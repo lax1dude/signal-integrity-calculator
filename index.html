@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Signal Integrity Calculator</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="An online calculator to solve equations more quickly related to collecting data from test gear" />
+		<meta name="keywords" content="signal integrity, signal integrity calculator, calculator online" />
+		<meta name="author" content="Calder Young" />
+		<meta property="og:title" content="Signal Integrity Calculator" />
+		<meta property="og:locale" content="en-US" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="An online calculator to solve equations more quickly related to collecting data from test gear" />
+		<meta property="og:url" content="https://lax1dude.github.io/signal-integrity-calculator/" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+	<body>
+		<h1 style="margin-block-start:0px;margin-block-end:0px;margin:5px 0px 10px 0px;">Signal Integrity Calculator</h1>
+		<div id="container">
+			<div class="calculator">
+				<p>
+					Incident Voltage = <input type="text" id="globalStepSource" style="width:2em;" value="400" />&nbsp;mV&emsp;
+					Output Impedance = <input type="text" id="globalOutImpedance" style="width:2em;" value="50" />&nbsp;&ohm;<br />
+				</p>
+				<p>
+					Speed of Light = <input type="text" id="speed_of_light" style="width:2em;" value="160" />&nbsp;<select style="width:4em;" id="speed_of_light_unit">
+						<option value="in" selected>ps/in</option>
+						<option value="mm">ps/mm</option>
+					</select>
+				</p>
+			</div>
+			<div class="calculator">
+				<h4>Reflection Coefficient from V<sub>measured</sub>&emsp;<div class="openClose" id="openClose_reflection_coefficient"></div></h4>
+				<div class="calculator_inner" id="calculator_inner_reflection_coefficient">
+					<img src="img/reflection_coefficient.png" />
+					<p>V<sub>reflected</sub> = <input type="text" id="Vreflected" style="width:2em;" />&nbsp;mV</p>
+					<button id="reflection_coefficient_enter">Enter</button>
+					<p id="reflection_coefficient_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4>Impedance from V<sub>measured</sub>&emsp;<div class="openClose" id="openClose_impedance"></div></h4>
+				<div class="calculator_inner" id="calculator_inner_impedance">
+					<img src="img/impedance.png" width="350" height="80" />
+					<p>V<sub>measured</sub> = <input type="text" id="Vmeasured" style="width:2em;" />&nbsp;mV</p>
+					<button id="impedance_enter">Enter</button>
+					<p id="impedance_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4>Rise Time&emsp;<div class="openClose" id="openClose_rise_time"></div></h4>
+				<div class="calculator_inner" id="calculator_inner_rise_time">
+					<img src="img/rise_time.png" width="120" height="60" />
+					<p>Bandwidth = <input type="text" id="rise_time_frequency" style="width:2em;" />
+					<select style="width:4em;" id="rise_time_frequency_unit">
+						<option value="mhz">MHz</option>
+						<option value="ghz" selected>GHz</option>
+					</select></p>
+					<button id="rise_time_enter">Enter</button>
+					<p id="rise_time_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4>Attenuation (dB/inch)&emsp;<div class="openClose" id="openClose_attenuation"></div></h4>
+				<div class="calculator_inner" id="calculator_inner_attenuation">
+					<img src="img/attenuation_per_inch.png" width="400" height="46" />
+					<table>
+						<tbody>
+							<tr><td>w</td><td>= <input type="text" id="attenuation_w" style="width:2em;" />
+							<select style="width:3.5em;" id="attenuation_w_unit">
+								<option value="mils" selected>mils</option>
+								<option value="mm">mm</option>
+							</select></td></tr>
+							<tr><td>f</td><td>= <input type="text" id="attenuation_f" style="width:2em;" />
+							<select style="width:4em;" id="rise_time_frequency_unit">
+								<option value="mhz">MHz</option>
+								<option value="ghz" selected>GHz</option>
+							</select></td></tr>
+							<tr><td>Dk</td><td>= <input type="text" id="attenuation_dk" style="width:2em;" /></td></tr>
+							<tr><td>Df</td><td>= <input type="text" id="attenuation_df" style="width:2em;" /></td><tr>
+						</tbody>
+					</table>
+					<button id="attenuation_enter">Enter</button>
+					<p id="attenuation_result"></p>
+					<div id="dialectric_losses_table">
+						<h3>Standard Dielectric Losses:&ensp;<span style="font-size:0.7em;">(Click One)</span></h3>
+						<table>
+							<thead>
+								<tr><th>Material Type</th><th>Dk</th><th>Df</th><th><small>dB/inch/GHz</small></th></tr>
+							</thead>
+							<tbody>
+								<tr id="dk_4.3_df_0.02" class="dkdf_autofill">
+									<td>Park Nelco N4000-6</td>
+									<td><code>4.3</code></td>
+									<td><code>0.02</code></td>
+									<td><code>0.1</code></td>
+								</tr>
+								<tr id="dk_4.4_df_0.016" class="dkdf_autofill">
+									<td>Isola 370HR</td>
+									<td><code>4.4</code></td>
+									<td><code>0.016</code></td>
+									<td><code>0.077</code></td>
+								</tr>
+								<tr id="dk_4.4_df_0.01" class="dkdf_autofill">
+									<td>GETEK</td>
+									<td><code>3.5-4.4</code></td>
+									<td><code>0.008-0.01</code></td>
+									<td><code>0.046</code></td>
+								</tr>
+								<tr id="dk_3.4_df_0.02" class="dkdf_autofill">
+									<td>N4000-13SI</td>
+									<td><code>3.4</code></td>
+									<td><code>0.02</code></td>
+									<td><code>0.042</code></td>
+								</tr>
+								<tr id="dk_3.7_df_0.009" class="dkdf_autofill">
+									<td>Isola FR408HR</td>
+									<td><code>3.7</code></td>
+									<td><code>0.009</code></td>
+									<td><code>0.04</code></td>
+								</tr>
+								<tr id="dk_3.6_df_0.008" class="dkdf_autofill">
+									<td>Park-Nelco N4000-13EP</td>
+									<td><code>3.6</code></td>
+									<td><code>0.008</code></td>
+									<td><code>0.035</code></td>
+								</tr>
+								<tr id="dk_3.6_df_0.004" class="dkdf_autofill">
+									<td>Rogers RO4350</td>
+									<td><code>3.6</code></td>
+									<td><code>0.004</code></td>
+									<td><code>0.017</code></td>
+								</tr>
+								<tr id="dk_2.6_df_0.004" class="dkdf_autofill">
+									<td>GoreSpeedBoard</td>
+									<td><code>2.6</code></td>
+									<td><code>0.004</code></td>
+									<td><code>0.015</code></td>
+								</tr>
+								<tr id="dk_3.7_df_0.002" class="dkdf_autofill">
+									<td>Panasonic Megtron6</td>
+									<td><code>3.7</code></td>
+									<td><code>0.002</code></td>
+									<td><code>0.009</code></td>
+								</tr>
+							</tbody>
+						</table>	
+					</div>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4>Time to Distance&emsp;<div class="openClose" id="openClose_distance"></div></h4>
+				<div class="calculator_inner" id="calculator_inner_distance">
+					<img src="img/distance.png" />
+					<p>Time = <input type="text" id="time_distance" style="width:2em;" />&nbsp;ps</p>
+					<button id="distance_enter">Enter</button>
+					<p id="distance_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4>Distance to Time&emsp;<div class="openClose" id="openClose_distance_time"></div></h4>
+				<div class="calculator_inner" id="calculator_inner_distance_time">
+					<img src="img/distance.png" />
+					<p>Distance = <input type="text" id="distance_time_distance" style="width:2em;" />
+					<select style="width:3em;" id="distance_time_distance_unit">
+						<option value="in" selected>in</option>
+						<option value="mm">mm</option>
+						<option value="cm">cm</option>
+					</select></p>
+					<button id="distance_time_enter">Enter</button>
+					<p id="distance_time_result"></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

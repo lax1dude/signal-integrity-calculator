@@ -1,0 +1,78 @@
+
+body {
+	margin: 0px;
+	padding: 20px;
+	font-family: sans-serif;
+}
+
+#container {
+	display: inline-block;
+	min-width: 50%;
+}
+
+.calculator {
+	border-top: 1px solid black;
+	margin: 10px 0px;
+}
+
+input[type=text] {
+	font-family: monospace;
+}
+
+.hr {
+	border-bottom: 1px solid black;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	margin: 10px 0px;
+}
+
+img {
+	border: 1px #CCCCCC dashed;
+	padding: 5px;
+}
+
+#dialectric_losses_table {
+	font-size: 0.75em;
+	display: inline-block;
+	padding: 5px;
+	margin: 10px 0px;
+	border: 1px #CCCCCC dashed;
+}
+
+#dialectric_losses_table th {
+	text-align: left;
+	text-decoration: underline;
+	font-size: 1.1em;
+}
+
+#dialectric_losses_table > table:hover td {
+	color: #999999;
+}
+
+.dkdf_autofill {
+	cursor: pointer;
+	background-color: white;
+}
+
+.dkdf_autofill > td {
+	padding-right: 5px;
+}
+
+.dkdf_autofill:hover > td {
+	color: black !important;
+}
+
+.dkdf_autofill:hover > td:first-child {
+	text-decoration: underline;
+}
+
+.openClose {
+	width: 18px;
+	height: 18px;
+	background-image: url("img/arrow_left.png");
+	display: inline-block;
+	float: right;
+}
