@@ -7,7 +7,7 @@ body {
 
 #container {
 	display: inline-block;
-	min-width: 50%;
+	min-width: 50vw;
 }
 
 .calculator {
@@ -67,12 +67,19 @@ img {
 
 .dkdf_autofill:hover > td:first-child {
 	text-decoration: underline;
+	user-select: none;
 }
 
 .openClose {
 	width: 18px;
 	height: 18px;
-	background-image: url("img/arrow_left.png");
+	background-image: url("img/arrow_up.png");
 	display: inline-block;
 	float: right;
+}
+
+.calculator h4:first-child {
+	cursor: pointer;
+	background-color: white;
+	user-select: none;
 }

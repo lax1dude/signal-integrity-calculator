@@ -18,6 +18,7 @@
 	</head>
 	<body>
 		<h1 style="margin-block-start:0px;margin-block-end:0px;margin:5px 0px 10px 0px;">Signal Integrity Calculator</h1>
+		<h5>&copy; calder young&emsp;<small>(Beta)</small></h5>
 		<div id="container">
 			<div class="calculator">
 				<p>
@@ -25,33 +26,35 @@
 					Output Impedance = <input type="text" id="globalOutImpedance" style="width:2em;" value="50" />&nbsp;&ohm;<br />
 				</p>
 				<p>
-					Speed of Light = <input type="text" id="speed_of_light" style="width:2em;" value="160" />&nbsp;<select style="width:4em;" id="speed_of_light_unit">
+					Speed of Light = <input type="text" id="speed_of_light" style="width:2em;" value="160" />
+					<select style="width:5em;" id="speed_of_light_unit">
 						<option value="in" selected>ps/in</option>
+						<option value="cm">ps/cm</option>
 						<option value="mm">ps/mm</option>
 					</select>
 				</p>
 			</div>
 			<div class="calculator">
-				<h4>Reflection Coefficient from V<sub>measured</sub>&emsp;<div class="openClose" id="openClose_reflection_coefficient"></div></h4>
-				<div class="calculator_inner" id="calculator_inner_reflection_coefficient">
+				<h4 id="calculator_text_reflection_coefficient">Reflection Coefficient from V<sub>reflected</sub>&emsp;<div class="openClose" id="openClose_reflection_coefficient"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_reflection_coefficient">
 					<img src="img/reflection_coefficient.png" />
 					<p>V<sub>reflected</sub> = <input type="text" id="Vreflected" style="width:2em;" />&nbsp;mV</p>
 					<button id="reflection_coefficient_enter">Enter</button>
-					<p id="reflection_coefficient_result"></p>
+					<p style="white-space:pre-wrap;" id="reflection_coefficient_result"></p>
 				</div>
 			</div>
 			<div class="calculator">
-				<h4>Impedance from V<sub>measured</sub>&emsp;<div class="openClose" id="openClose_impedance"></div></h4>
-				<div class="calculator_inner" id="calculator_inner_impedance">
+				<h4 id="calculator_text_impedance">Impedance from V<sub>measured</sub>&emsp;<div class="openClose" id="openClose_impedance"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_impedance">
 					<img src="img/impedance.png" width="350" height="80" />
 					<p>V<sub>measured</sub> = <input type="text" id="Vmeasured" style="width:2em;" />&nbsp;mV</p>
 					<button id="impedance_enter">Enter</button>
-					<p id="impedance_result"></p>
+					<p style="white-space:pre-wrap;" id="impedance_result"></p>
 				</div>
 			</div>
 			<div class="calculator">
-				<h4>Rise Time&emsp;<div class="openClose" id="openClose_rise_time"></div></h4>
-				<div class="calculator_inner" id="calculator_inner_rise_time">
+				<h4 id="calculator_text_rise_time">Rise Time&emsp;<div class="openClose" id="openClose_rise_time"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_rise_time">
 					<img src="img/rise_time.png" width="120" height="60" />
 					<p>Bandwidth = <input type="text" id="rise_time_frequency" style="width:2em;" />
 					<select style="width:4em;" id="rise_time_frequency_unit">
@@ -59,31 +62,31 @@
 						<option value="ghz" selected>GHz</option>
 					</select></p>
 					<button id="rise_time_enter">Enter</button>
-					<p id="rise_time_result"></p>
+					<p style="white-space:pre-wrap;" id="rise_time_result"></p>
 				</div>
 			</div>
 			<div class="calculator">
-				<h4>Attenuation (dB/inch)&emsp;<div class="openClose" id="openClose_attenuation"></div></h4>
-				<div class="calculator_inner" id="calculator_inner_attenuation">
+				<h4 id="calculator_text_attenuation">Attenuation (dB/inch)&emsp;<div class="openClose" id="openClose_attenuation"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_attenuation">
 					<img src="img/attenuation_per_inch.png" width="400" height="46" />
 					<table>
 						<tbody>
-							<tr><td>w</td><td>= <input type="text" id="attenuation_w" style="width:2em;" />
-							<select style="width:3.5em;" id="attenuation_w_unit">
+							<tr><td>w</td><td>= <input type="text" id="attenuation_w" style="width:3em;" />
+							<select style="width:4em;" id="attenuation_w_unit">
 								<option value="mils" selected>mils</option>
 								<option value="mm">mm</option>
 							</select></td></tr>
-							<tr><td>f</td><td>= <input type="text" id="attenuation_f" style="width:2em;" />
-							<select style="width:4em;" id="rise_time_frequency_unit">
+							<tr><td>f</td><td>= <input type="text" id="attenuation_f" style="width:3em;" />
+							<select style="width:4em;" id="attenuation_frequency_unit">
 								<option value="mhz">MHz</option>
 								<option value="ghz" selected>GHz</option>
 							</select></td></tr>
-							<tr><td>Dk</td><td>= <input type="text" id="attenuation_dk" style="width:2em;" /></td></tr>
-							<tr><td>Df</td><td>= <input type="text" id="attenuation_df" style="width:2em;" /></td><tr>
+							<tr><td>Dk</td><td>= <input type="text" id="attenuation_dk" style="width:3em;" /></td></tr>
+							<tr><td>Df</td><td>= <input type="text" id="attenuation_df" style="width:3em;" /></td><tr>
 						</tbody>
 					</table>
 					<button id="attenuation_enter">Enter</button>
-					<p id="attenuation_result"></p>
+					<p style="white-space:pre-wrap;" id="attenuation_result"></p>
 					<div id="dialectric_losses_table">
 						<h3>Standard Dielectric Losses:&ensp;<span style="font-size:0.7em;">(Click One)</span></h3>
 						<table>
@@ -151,28 +154,33 @@
 				</div>
 			</div>
 			<div class="calculator">
-				<h4>Time to Distance&emsp;<div class="openClose" id="openClose_distance"></div></h4>
-				<div class="calculator_inner" id="calculator_inner_distance">
+				<h4 id="calculator_text_distance">Time to Distance&emsp;<div class="openClose" id="openClose_distance"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_distance">
 					<img src="img/distance.png" />
-					<p>Time = <input type="text" id="time_distance" style="width:2em;" />&nbsp;ps</p>
+					<p>Time = <input type="text" id="time_distance" style="width:2em;" />
+					<select style="width:4em;" id="time_distance_unit">
+						<option value="ps" selected>ps</option>
+						<option value="ns">ns</option>
+					</select>
 					<button id="distance_enter">Enter</button>
-					<p id="distance_result"></p>
+					<p style="white-space:pre-wrap;" id="distance_result"></p>
 				</div>
 			</div>
 			<div class="calculator">
-				<h4>Distance to Time&emsp;<div class="openClose" id="openClose_distance_time"></div></h4>
-				<div class="calculator_inner" id="calculator_inner_distance_time">
+				<h4 id="calculator_text_distance_time">Distance to Time&emsp;<div class="openClose" id="openClose_distance_time"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_distance_time">
 					<img src="img/distance.png" />
 					<p>Distance = <input type="text" id="distance_time_distance" style="width:2em;" />
-					<select style="width:3em;" id="distance_time_distance_unit">
+					<select style="width:4em;" id="distance_time_distance_unit">
 						<option value="in" selected>in</option>
-						<option value="mm">mm</option>
 						<option value="cm">cm</option>
+						<option value="mm">mm</option>
 					</select></p>
 					<button id="distance_time_enter">Enter</button>
-					<p id="distance_time_result"></p>
+					<p style="white-space:pre-wrap;" id="distance_time_result"></p>
 				</div>
 			</div>
+			<br />
 		</div>
 	</body>
 </html>
