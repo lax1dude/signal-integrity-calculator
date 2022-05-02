@@ -47,8 +47,8 @@ function calculateImpedance() {
 		alert("Zsource value is invalid!");
 		return;
 	}
-	document.getElementById("impedance_result").innerText = 
-		"\nImpedance = " + roundLowPrecision((Zincident * Vmeasured) / (Vincident - Vmeasured)) + "\n\n";
+	document.getElementById("impedance_result").innerHTML = 
+		"\nImpedance = " + roundLowPrecision((Zincident * Vmeasured) / (Vincident - Vmeasured)) + " &ohm;\n\n";
 }
 
 function calculateRiseTime() {
