@@ -122,7 +122,10 @@ function calculateDistance() {
 	document.getElementById("distance_result").innerText = 
 		"\nDistance = " + roundLowPrecision(inches) + " in"
 		+ "\nDistance = " + roundLowPrecision(inches * 2.54) + " cm"
-		+ "\nDistance = " + (Math.round(inches * 254.0) / 10.0) + " mm\n\n";
+		+ "\nDistance = " + (Math.round(inches * 254.0) / 10.0) + " mm\n"
+		+ "\nRound Trip = " + roundLowPrecision(inches * 0.5) + " in"
+		+ "\nRound Trip = " + roundLowPrecision(inches * 2.54 * 0.5) + " cm"
+		+ "\nRound Trip = " + (Math.round(inches * 254.0 * 0.5) / 10.0) + " mm\n\n";
 }
 
 function calculateDistanceTime() {
@@ -152,7 +155,9 @@ function calculateDistanceTime() {
 	var time = Math.round(speedOfLight * dist);
 	document.getElementById("distance_time_result").innerText = 
 		"\nTime = " + time + " ps"
-		+ "\nTime = " + roundLowPrecision(time * 0.001) + " ns\n\n";
+		+ "\nTime = " + roundLowPrecision(time * 0.001) + " ns\n"
+		+ "\nRound Trip = " + (time * 2.0) + " ps"
+		+ "\nRound Trip = " + roundLowPrecision(time * 0.001 * 2.0) + " ns\n\n";
 }
 
 window.addEventListener("load", () => {
