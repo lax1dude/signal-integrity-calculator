@@ -3,14 +3,37 @@ function roundLowPrecision(input) {
 	return Math.round(input * 1000) / 1000.0;
 }
 
+function roundLowPrecision2(input) {
+	return Math.round(input * 100) / 100.0;
+}
+
+function roundLowPrecision3(input) {
+	var input2 = "" + input;
+	while(input2.length > 5 && input2.indexOf(".") !== -1) {
+		input2 = input2.substring(0, input2.length - 1);
+	}
+	if(input2.endsWith(".")) {
+		input2 = input2.substring(0, input2.length - 1);
+	}
+	return input2;
+}
+
 function makeUpDown(clickElement, hiddenElement, iconElement) {
-	let hid = false;
+	let hid = true;
 	const hiddenElement0 = hiddenElement;
 	const iconElement0 = iconElement;
 	clickElement.addEventListener("click", () => {
 		hid = !hid;
 		hiddenElement0.style.display = hid ? "none" : "block";
 		iconElement0.style.backgroundImage = hid ? "url(\"img/arrow_up.png\")" : "url(\"img/arrow_down.png\")";
+		var firstField = hiddenElement0.querySelector("input:first-of-type");
+		firstField.focus();
+		if(firstField.screenY + firstField.clientHeight > window.innerHeight) {
+			var imgFirst = hiddenElement0.querySelector("img:first-of-type");
+			if(imgFirst) {
+				imgFirst.scrollIntoView();
+			}
+		}
 	});
 }
 
@@ -160,6 +183,71 @@ function calculateDistanceTime() {
 		+ "\nRound Trip = " + roundLowPrecision(time * 0.001 * 2.0) + " ns\n\n";
 }
 
+function calculateSParameter() {
+	var Vinput = parseFloat(document.getElementById("s_parameter_input").value);
+	if(isNaN(Vinput)) {
+		alert("Vinput value is invalid!");
+		return;
+	}
+	if(document.getElementById("s_parameter_input_unit").value === "mv") {
+		Vinput *= 0.001;
+	}
+	var Voutput = parseFloat(document.getElementById("s_parameter_output").value);
+	if(isNaN(Voutput)) {
+		alert("Voutput value is invalid!");
+		return;
+	}
+	if(document.getElementById("s_parameter_output_unit").value === "mv") {
+		Voutput *= 0.001;
+	}
+	document.getElementById("s_parameter_result").innerText = 
+		"\nS = " + roundLowPrecision(Voutput / Vinput) + "\n\n";
+}
+
+function calculateSParameterDb() {
+	var Vinput = parseFloat(document.getElementById("s_parameter_db_input").value);
+	if(isNaN(Vinput)) {
+		alert("Vinput value is invalid!");
+		return;
+	}
+	if(document.getElementById("s_parameter_db_input_unit").value === "mv") {
+		Vinput *= 0.001;
+	}
+	var Voutput = parseFloat(document.getElementById("s_parameter_db_output").value);
+	if(isNaN(Voutput)) {
+		alert("Voutput value is invalid!");
+		return;
+	}
+	if(document.getElementById("s_parameter_db_output_unit").value === "mv") {
+		Voutput *= 0.001;
+	}
+	document.getElementById("s_parameter_db_result").innerText = 
+		"\nS = " + roundLowPrecision2(20.0 * Math.log10(Voutput / Vinput)) + " dB\n\n";
+}
+
+function calculateCoefficientDb() {
+	var input = parseFloat(document.getElementById("coefficient_db").value);
+	if(isNaN(input)) {
+		alert("X value is invalid!");
+		return;
+	}
+	document.getElementById("coefficient_db_result").innerText = 
+		"\ndB = " + roundLowPrecision2(10.0 * Math.log10(input)) + " dB\n\n";
+}
+
+function calculateDbCoefficient() {
+	var input = parseFloat(document.getElementById("db_coefficient").value);
+	if(isNaN(input)) {
+		alert("dB value is invalid!");
+		return;
+	}
+	if(document.getElementById("db_coefficient_unit").value === "b") {
+		Voutput *= 10.0;
+	}
+	document.getElementById("db_coefficient_result").innerText = 
+		"\nX = " + roundLowPrecision3(Math.pow(10.0, input / 10.0)) + "\n\n";
+}
+
 window.addEventListener("load", () => {
 	makeUpDown(
 		document.getElementById("calculator_text_reflection_coefficient"),
@@ -198,6 +286,30 @@ window.addEventListener("load", () => {
 		document.getElementById("openClose_distance_time")
 	);
 	document.getElementById("distance_time_enter").addEventListener("click", calculateDistanceTime);
+	makeUpDown(
+		document.getElementById("calculator_text_s_parameter"),
+		document.getElementById("calculator_inner_s_parameter"),
+		document.getElementById("openClose_s_parameter")
+	);
+	document.getElementById("s_parameter_enter").addEventListener("click", calculateSParameter);
+	makeUpDown(
+		document.getElementById("calculator_text_s_parameter_db"),
+		document.getElementById("calculator_inner_s_parameter_db"),
+		document.getElementById("openClose_s_parameter_db")
+	);
+	document.getElementById("s_parameter_db_enter").addEventListener("click", calculateSParameterDb);
+	makeUpDown(
+		document.getElementById("calculator_text_coefficient_db"),
+		document.getElementById("calculator_inner_coefficient_db"),
+		document.getElementById("openClose_coefficient_db")
+	);
+	document.getElementById("coefficient_db_enter").addEventListener("click", calculateCoefficientDb);
+	makeUpDown(
+		document.getElementById("calculator_text_db_coefficient"),
+		document.getElementById("calculator_inner_db_coefficient"),
+		document.getElementById("openClose_db_coefficient")
+	);
+	document.getElementById("db_coefficient_enter").addEventListener("click", calculateDbCoefficient);
 });
 
 function setupAttenuationTableClicks() {

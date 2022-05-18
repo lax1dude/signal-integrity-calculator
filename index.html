@@ -18,15 +18,15 @@
 	</head>
 	<body>
 		<h1 style="margin-block-start:0px;margin-block-end:0px;margin:5px 0px 10px 0px;">Signal Integrity Calculator</h1>
-		<h5>&copy; calder young&emsp;<small>(Beta)</small></h5>
+		<h5><small>(Beta)</small></h5>
 		<div id="container">
 			<div class="calculator">
 				<p>
-					Incident Voltage = <input type="text" id="globalStepSource" style="width:2em;" value="400" />&nbsp;mV&emsp;
-					Output Impedance = <input type="text" id="globalOutImpedance" style="width:2em;" value="50" />&nbsp;&ohm;<br />
+					Incident Voltage = <input type="text" id="globalStepSource" style="width:2.5em;" value="400" />&nbsp;mV&emsp;
+					Output Impedance = <input type="text" id="globalOutImpedance" style="width:2.5em;" value="50" />&nbsp;&ohm;<br />
 				</p>
 				<p>
-					Speed of Light = <input type="text" id="speed_of_light" style="width:2em;" value="160" />
+					Speed of Light = <input type="text" id="speed_of_light" style="width:2.5em;" value="160" />
 					<select style="width:5em;" id="speed_of_light_unit">
 						<option value="in" selected>ps/in</option>
 						<option value="cm">ps/cm</option>
@@ -38,7 +38,7 @@
 				<h4 id="calculator_text_reflection_coefficient">Reflection Coefficient from V<sub>reflected</sub>&emsp;<div class="openClose" id="openClose_reflection_coefficient"></div></h4>
 				<div class="calculator_inner" style="display:none;" id="calculator_inner_reflection_coefficient">
 					<img src="img/reflection_coefficient.png" />
-					<p>V<sub>reflected</sub> = <input type="text" id="Vreflected" style="width:2em;" />&nbsp;mV</p>
+					<p>V<sub>reflected</sub> = <input type="text" id="Vreflected" style="width:2.5em;" />&nbsp;mV</p>
 					<button id="reflection_coefficient_enter">Enter</button>
 					<p style="white-space:pre-wrap;" id="reflection_coefficient_result"></p>
 				</div>
@@ -47,7 +47,7 @@
 				<h4 id="calculator_text_impedance">Impedance from V<sub>measured</sub>&emsp;<div class="openClose" id="openClose_impedance"></div></h4>
 				<div class="calculator_inner" style="display:none;" id="calculator_inner_impedance">
 					<img src="img/impedance.png" width="350" height="80" />
-					<p>V<sub>measured</sub> = <input type="text" id="Vmeasured" style="width:2em;" />&nbsp;mV</p>
+					<p>V<sub>measured</sub> = <input type="text" id="Vmeasured" style="width:2.5em;" />&nbsp;mV</p>
 					<button id="impedance_enter">Enter</button>
 					<p style="white-space:pre-wrap;" id="impedance_result"></p>
 				</div>
@@ -56,7 +56,7 @@
 				<h4 id="calculator_text_rise_time">Rise Time&emsp;<div class="openClose" id="openClose_rise_time"></div></h4>
 				<div class="calculator_inner" style="display:none;" id="calculator_inner_rise_time">
 					<img src="img/rise_time.png" width="120" height="60" />
-					<p>Bandwidth = <input type="text" id="rise_time_frequency" style="width:2em;" />
+					<p>Bandwidth = <input type="text" id="rise_time_frequency" style="width:2.5em;" />
 					<select style="width:4em;" id="rise_time_frequency_unit">
 						<option value="mhz">MHz</option>
 						<option value="ghz" selected>GHz</option>
@@ -157,7 +157,7 @@
 				<h4 id="calculator_text_distance">Time to Distance&emsp;<div class="openClose" id="openClose_distance"></div></h4>
 				<div class="calculator_inner" style="display:none;" id="calculator_inner_distance">
 					<img src="img/distance.png" />
-					<p>Time = <input type="text" id="time_distance" style="width:2em;" />
+					<p>Time = <input type="text" id="time_distance" style="width:2.5em;" />
 					<select style="width:4em;" id="time_distance_unit">
 						<option value="ps" selected>ps</option>
 						<option value="ns">ns</option>
@@ -170,7 +170,7 @@
 				<h4 id="calculator_text_distance_time">Distance to Time&emsp;<div class="openClose" id="openClose_distance_time"></div></h4>
 				<div class="calculator_inner" style="display:none;" id="calculator_inner_distance_time">
 					<img src="img/distance.png" />
-					<p>Distance = <input type="text" id="distance_time_distance" style="width:2em;" />
+					<p>Distance = <input type="text" id="distance_time_distance" style="width:2.5em;" />
 					<select style="width:4em;" id="distance_time_distance_unit">
 						<option value="in" selected>in</option>
 						<option value="cm">cm</option>
@@ -178,6 +178,76 @@
 					</select></p>
 					<button id="distance_time_enter">Enter</button>
 					<p style="white-space:pre-wrap;" id="distance_time_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4 id="calculator_text_s_parameter">S-Parameter&emsp;<div class="openClose" id="openClose_s_parameter"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_s_parameter">
+					<img src="img/s_parameter.png" />
+					<table>
+						<tbody>
+							<tr><td>V<sub>input</sub></td><td>&nbsp;= <input type="text" id="s_parameter_input" style="width:2.5em;" />
+							<select style="width:4em;" id="s_parameter_input_unit">
+								<option value="mv" selected>mV</option>
+								<option value="v">V</option>
+							</select></td></tr>
+							<tr><td>V<sub>output</sub></td><td>&nbsp;= <input type="text" id="s_parameter_output" style="width:2.5em;" />
+							<select style="width:4em;" id="s_parameter_output_unit">
+								<option value="mv" selected>mV</option>
+								<option value="v">V</option>
+							</select></td></tr>
+						</tbody>
+					</table>
+					<br />
+					<button id="s_parameter_enter">Enter</button>
+					<p style="white-space:pre-wrap;" id="s_parameter_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4 id="calculator_text_s_parameter_db">S-Parameter in dB&emsp;<div class="openClose" id="openClose_s_parameter_db"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_s_parameter_db">
+					<img src="img/s_parameter_to_db.png" />
+					<table>
+						<tbody>
+							<tr><td>V<sub>input</sub></td><td>&nbsp;= <input type="text" id="s_parameter_db_input" style="width:2.5em;" />
+							<select style="width:4em;" id="s_parameter_db_input_unit">
+								<option value="mv" selected>mV</option>
+								<option value="v">V</option>
+							</select></td></tr>
+							<tr><td>V<sub>output</sub></td><td>&nbsp;= <input type="text" id="s_parameter_db_output" style="width:2.5em;" />
+							<select style="width:4em;" id="s_parameter_db_output_unit">
+								<option value="mv" selected>mV</option>
+								<option value="v">V</option>
+							</select></td></tr>
+						</tbody>
+					</table>
+					<br />
+					<button id="s_parameter_db_enter">Enter</button>
+					<p style="white-space:pre-wrap;" id="s_parameter_db_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4 id="calculator_text_coefficient_db">Coefficient to dB&emsp;<div class="openClose" id="openClose_coefficient_db"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_coefficient_db">
+					<img src="img/mag_to_db.png" />
+					<p>X = <input type="text" id="coefficient_db" style="width:3em;" /></p>
+					<button id="coefficient_db_enter">Enter</button>
+					<br />
+					<p style="white-space:pre-wrap;" id="coefficient_db_result"></p>
+				</div>
+			</div>
+			<div class="calculator">
+				<h4 id="calculator_text_db_coefficient">dB to Coefficient&emsp;<div class="openClose" id="openClose_db_coefficient"></div></h4>
+				<div class="calculator_inner" style="display:none;" id="calculator_inner_db_coefficient">
+					<img src="img/db_to_mag.png" />
+					<p>dB = <input type="text" id="db_coefficient" style="width:2.5em;" />
+					<select style="width:4em;" id="db_coefficient_unit">
+						<option value="db" selected>dB</option>
+						<option value="b">B</option>
+					</select></p>
+					<br />
+					<button id="db_coefficient_enter">Enter</button>
+					<p style="white-space:pre-wrap;" id="db_coefficient_result"></p>
 				</div>
 			</div>
 			<br />
