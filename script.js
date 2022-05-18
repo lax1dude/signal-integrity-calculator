@@ -232,7 +232,8 @@ function calculateCoefficientDb() {
 		return;
 	}
 	document.getElementById("coefficient_db_result").innerText = 
-		"\ndB = " + roundLowPrecision2(10.0 * Math.log10(input)) + " dB\n\n";
+		"\ndB = " + roundLowPrecision2(10.0 * Math.log10(input)) + " dB (factor)" +
+		"\ndB = " + roundLowPrecision2(20.0 * Math.log10(input)) + " dB (waveform magnitude)\n\n";
 }
 
 function calculateDbCoefficient() {
@@ -242,10 +243,11 @@ function calculateDbCoefficient() {
 		return;
 	}
 	if(document.getElementById("db_coefficient_unit").value === "b") {
-		Voutput *= 10.0;
+		input *= 10.0;
 	}
 	document.getElementById("db_coefficient_result").innerText = 
-		"\nX = " + roundLowPrecision3(Math.pow(10.0, input / 10.0)) + "\n\n";
+		"\nX = " + roundLowPrecision3(Math.pow(10.0, input / 10.0)) + " (factor)" +
+		"\nX = " + roundLowPrecision3(Math.pow(10.0, input / 20.0)) + " (waveform magnitude)\n\n";
 }
 
 window.addEventListener("load", () => {
