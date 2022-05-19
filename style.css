@@ -83,3 +83,12 @@ img {
 	background-color: white;
 	user-select: none;
 }
+
+.instrumentCategory {
+	font-size: 0.8em;
+	font-family: monospace;
+	padding: 1px;
+	border: 1px solid #777777;
+	border-radius: 2px;
+	background-color: #EFEFEF;
+}

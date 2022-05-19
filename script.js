@@ -184,14 +184,12 @@ function calculateDistanceTime() {
 }
 
 function calculateSParameter() {
-	var Vinput = parseFloat(document.getElementById("s_parameter_input").value);
+	var Vinput = parseFloat(document.getElementById("globalVNAVoltage").value);
 	if(isNaN(Vinput)) {
-		alert("Vinput value is invalid!");
+		alert("VNA Incident voltage value is invalid!");
 		return;
 	}
-	if(document.getElementById("s_parameter_input_unit").value === "mv") {
-		Vinput *= 0.001;
-	}
+	Vinput *= 0.001;
 	var Voutput = parseFloat(document.getElementById("s_parameter_output").value);
 	if(isNaN(Voutput)) {
 		alert("Voutput value is invalid!");
@@ -205,14 +203,12 @@ function calculateSParameter() {
 }
 
 function calculateSParameterDb() {
-	var Vinput = parseFloat(document.getElementById("s_parameter_db_input").value);
+	var Vinput = parseFloat(document.getElementById("globalVNAVoltage").value);
 	if(isNaN(Vinput)) {
-		alert("Vinput value is invalid!");
+		alert("VNA Incident voltage value is invalid!");
 		return;
 	}
-	if(document.getElementById("s_parameter_db_input_unit").value === "mv") {
-		Vinput *= 0.001;
-	}
+	Vinput *= 0.001;
 	var Voutput = parseFloat(document.getElementById("s_parameter_db_output").value);
 	if(isNaN(Voutput)) {
 		alert("Voutput value is invalid!");
